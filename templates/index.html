@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Квізи</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<h1>Квізи</h1>
+        {% for element in quizzes%}
+        <h2> {{element[1]}}</h2>
+        <p>{{element[2]}}</p>
+        {% endfor %}
+</body>
+
+</html>

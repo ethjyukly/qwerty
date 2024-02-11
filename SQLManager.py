@@ -32,10 +32,32 @@ class SQLManager:
                       ''')
         cursor.close()
         self.db.commit()
+
+
     def add_quizz(self, name, description):
-        cursor=self.db.cursor()
+        cursor = self.db.cursor()
         cursor.execute("""
-        INSERT INTO Quizz (quizz_name, description) VALUES (?,?)
+            INSERT INTO Quizz (quizz_name,description) VALUES (?, ?)
         """, [name, description])
         cursor.close()
         self.db.commit()
+
+
+    def add_question(self, quiz_id, content):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            INSERT INTO Questions (quiz_id,content) VALUES (?, ?)
+        """, [quiz_id, content])
+        cursor.close()
+        self.db.commit()
+
+    def select_quizzes(self):
+        cursor = self.db.cursor()
+        cursor.execute("""
+                    SELECT * FROM Quizz;
+                """)
+        records = cursor.fetchall()
+        cursor.close()
+        self.db.commit()
+        return records
+
